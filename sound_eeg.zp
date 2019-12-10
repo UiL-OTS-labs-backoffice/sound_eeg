@@ -6,13 +6,18 @@ import std_defs;
 
 SoundPlayback playback
 {
-    BeepGenerator beep
+    on_event:init()
     {
+        device = sound_output_device;
     }
 
     on_event:finish()
     {
         done(CONTINUE);
+    }
+    
+    BeepGenerator beep
+    {
     }
 
     void done(int msgid)
@@ -30,7 +35,7 @@ SoundPlayback playback
     }
 }
 
-Block part
+Block task
 {
     on_event:entry()
     {
@@ -40,8 +45,29 @@ Block part
 
     on_event:exit()
     {
-        println("exitting");
+        println("exiting");
         terminate;
+    }
+
+    Block stimuli
+    {
+        on_event:entry()
+        {
+            num_cycles = test::NUMBER;
+        }
+
+        Trial
+        {
+            on_event:entry()
+            {
+                playback.action(
+                    this,
+                    440,
+                    reference_time + test::ISI,
+                    test::STIM_DUR
+                    );
+            }
+        }
     }
 }
 
@@ -49,5 +75,5 @@ Block part
 on_event:start()
 {
     println("Experiment started.");
-    terminate;
+    task.enter(null);
 }
