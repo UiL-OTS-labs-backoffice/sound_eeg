@@ -1,10 +1,16 @@
 
 // This variable can be set in order to correct for the observed audio latency.
 
-dur HW_LATENCY  = 0.0ms;
+dur HW_LATENCY  = 3.4ms;
 
-int NUMBER      = 100;
+int NUMBER      = 1000;
 
 dur ISI         = 90ms;
 
 dur STIM_DUR    = 10ms;
+
+dur TRIG_DUR    = 8ms;
+
+int SPP_DEV     = 0;
+
+real FREQ       = 1000.0;

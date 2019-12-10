@@ -4,12 +4,38 @@ plugin zep_iospp;
 import std_sound_output_device;
 import std_defs;
 
+SPP trigger_device
+{
+    on_event:init()
+    {
+        spp_set_update_interval(1ms);
+        open(test::SPP_DEV);
+        data_is_output = true;
+        if (error())
+            terminate;
+    }
+
+    on_event:cleanup()
+    {
+        write_data(0x00);
+        close();
+    }
+
+    void trigger(int number, time t, dur d)
+    {
+        start_data(number, t);
+        stop_data(0, t + d);
+    }
+}
+
 SoundPlayback playback
 {
     on_event:init()
     {
         device = sound_output_device;
+        scaling_all = 0.99;
     }
+
 
     on_event:finish()
     {
@@ -62,9 +88,15 @@ Block task
             {
                 playback.action(
                     this,
-                    440,
+                    test::FREQ,
                     reference_time + test::ISI,
                     test::STIM_DUR
+                    );
+
+                trigger_device.trigger(
+                    255,
+                    reference_time + test::ISI,
+                    test::TRIG_DUR
                     );
             }
         }
