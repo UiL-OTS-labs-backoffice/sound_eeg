@@ -1,0 +1,10 @@
+
+plugin zep_iospp;
+plugin zep_sound;
+
+
+on_event:start()
+{
+    println("Experiment started.");
+    terminate;
+}
