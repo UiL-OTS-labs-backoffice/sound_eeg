@@ -1,0 +1,22 @@
+/******************************************************************************\
+FILE:           sound_settings.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Defines default sound settings.
+
+\******************************************************************************/
+
+
+// Settings used for default (first) playback device.
+const int       PLAYBACK_NUM_CHANNELS           = 2;
+const SampleRate PLAYBACK_SAMPLE_RATE           = RATE_48000;
+const dur       PLAYBACK_LATENCY                = 0ms;  // 0 means default
+
+
+// Settings used for default (first) capture device.
+const int       CAPTURE_NUM_CHANNELS            = 2;
+const SampleRate CAPTURE_SAMPLE_RATE            = RATE_48000;
+const dur       CAPTURE_LATENCY                 = 0ms;  // 0 means default

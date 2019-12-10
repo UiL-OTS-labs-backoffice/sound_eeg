@@ -1,0 +1,38 @@
+/******************************************************************************\
+FILE:           std_sound_output_device.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Provides a sound output device object. The device will be opened at
+initialization time.
+
+HISTORY:
+2017-01-01 TV   Initial version for Zep 2.0
+
+\******************************************************************************/
+
+
+plugin zep_sound;
+
+import sound_settings;
+import test::defs;
+
+SoundPlaybackDevice sound_output_device
+{
+    init()
+    {
+        open(PLAYBACK_NUM_CHANNELS, PLAYBACK_SAMPLE_RATE, -1, PLAYBACK_LATENCY);
+
+        if (error())
+            terminate;
+
+        hardware_latency = test::HW_LATENCY;
+
+        println("Hardware latency = " + hardware_latency);
+
+    }
+}
+
+

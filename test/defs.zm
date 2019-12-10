@@ -1,0 +1,6 @@
+
+// This variable can be set in order to correct for the observed audio latency.
+
+dur HW_LATENCY = 0.0ms;
+
+

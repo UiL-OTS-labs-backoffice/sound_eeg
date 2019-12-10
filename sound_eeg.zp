@@ -1,6 +1,49 @@
 
 plugin zep_iospp;
-plugin zep_sound;
+
+import std_sound_output_device;
+import std_defs;
+
+SoundPlayback playback
+{
+    BeepGenerator beep
+    {
+    }
+
+    on_event:finish()
+    {
+        done(CONTINUE);
+    }
+
+    void done(int msgid)
+    {
+        signal_target(msgid);
+        target = null;
+    }
+
+    void action(Part part, real freq, time t, dur d)
+    {
+        beep.frequency_all = freq;
+        beep.duration = d;
+        target = part;
+        start(t);
+    }
+}
+
+Block part
+{
+    on_event:entry()
+    {
+        reference_time = now();
+        num_cycles = 1;
+    }
+
+    on_event:exit()
+    {
+        println("exitting");
+        terminate;
+    }
+}
 
 
 on_event:start()
