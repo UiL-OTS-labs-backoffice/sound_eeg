@@ -24,7 +24,7 @@ SPP trigger_device
     void trigger(int number, time t, dur d)
     {
         start_data(number, t);
-        stop_data(0, t + d);
+        stop_data(0x00, t + d);
     }
 }
 
@@ -86,16 +86,20 @@ Block task
         {
             on_event:entry()
             {
+                time stim_onset = reference_time + test::ISI;
+                // jittered onset is the onset + a little bit of noise
+                time jittered_onset = stim_onset +
+                        dur(real(random(-test::JITTER/2, test::JITTER))/1000.0);
                 playback.action(
                     this,
                     test::FREQ,
-                    reference_time + test::ISI,
+                    jittered_onset,
                     test::STIM_DUR
                     );
 
                 trigger_device.trigger(
-                    255,
-                    reference_time + test::ISI,
+                    0xFF,
+                    stim_onset,
                     test::TRIG_DUR
                     );
             }

@@ -25,6 +25,15 @@ Since we assume the triggers are presented at the same time as the sound
 stimuli we can have a look at the signals on the oscilloscope. Then we should
 have a reasonable idea of the offset and the latency.
 
+So in the image below, we can see the desired results, where the trigger starts
+simultaneous  with the onset of the sound. This should happen all the time ideally.
+
+![alt text][simultaneous]
+
+in the current
+
+
+
 ## Notes
 1. Parallel Port. Zep is not able to trigger properly when the previous trigger
 hasn't been properly handled. With EEG experiments, this typically isn't a
@@ -35,3 +44,6 @@ optimal results.
 do not like it or the Xonar D2 devices do not like it. The waveforms are
 distored.
 3. Xonar has a hardware latency of about 3.4 ms. (on Linux).
+
+[simultaneous]: ./images/oscilloscope.png
+[delayed]: ./images/delayed.png

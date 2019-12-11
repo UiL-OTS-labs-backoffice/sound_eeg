@@ -1,16 +1,32 @@
 
 // This variable can be set in order to correct for the observed audio latency.
-
+//dur HW_LATENCY  = 0ms;
+// This HW_LATENCY of 3.4 works really nice with Xondar D2 stereo 48KHz on Linux
 dur HW_LATENCY  = 3.4ms;
 
+// Random jitter is in µs so a jitter of 1000 as 1ms of jitter
+int JITTER      = 0;
+//int JITTER      = 3000; // jitter of about 3 ms // the stimulus should start
+                          // +/- 1.5 ms around the stimulus (if there is no delay).
+
+// Number of repetions/number of trials.
 int NUMBER      = 1000;
 
+// Time between the offset_of the stimulus and the onset of a stimulus.
 dur ISI         = 90ms;
 
+// The length of a stimulus
 dur STIM_DUR    = 10ms;
 
-dur TRIG_DUR    = 8ms;
+// The frequency of the stimulus
+real FREQ       = 1000.0;
 
+// The length of the trigger pulse
+// for now make sure that you don't start a new trigger before the old one
+// has stopped, because otherwise you might lose triggers...
+// Zep doesn't handle this situation 100% correct.
+dur TRIG_DUR    = 1ms;
+
+// Which Standard parallel port to use. 0-x
 int SPP_DEV     = 0;
 
-real FREQ       = 1000.0;
