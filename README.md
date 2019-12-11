@@ -25,12 +25,29 @@ Since we assume the triggers are presented at the same time as the sound
 stimuli we can have a look at the signals on the oscilloscope. Then we should
 have a reasonable idea of the offset and the latency.
 
+### Optimal results
 So in the image below, we can see the desired results, where the trigger starts
 simultaneous  with the onset of the sound. This should happen all the time ideally.
 
 ![alt text][simultaneous]
 
-in the current
+### Delayed results
+In the scenario below one can see that the stimuli are always presented a little
+to late. However, there isn't any jitter, that is, the stimuli are alway quite
+precisely 3.4ms to late. That is suboptimal, but something one can work with.
+Using Zep on Linux, one can tell the SoundOutputDevice that there is a
+harware_delay of 3.4 ms and then zep will schelude the stimuli 3.4 ms earlier
+to correct for the delay.
+
+![alt text][delayed]
+
+### Jittered results
+Below is the situation of jittered pulse and signals, this is the worst case
+scenario. Then there is a unpredictable delay for which cannot be controlled.
+Hence than you should hope that the jitter is < 1ms, than it is reasonably alright.
+but if it is much more, you will lose quite some temporal precision.
+
+![alt text][jitter]
 
 
 
@@ -47,3 +64,5 @@ distored.
 
 [simultaneous]: ./images/oscilloscope.png
 [delayed]: ./images/delayed.png
+[jitter]: ./images/jitter.png
+
