@@ -1,5 +1,4 @@
-# sound_eeg A small testing utility to compare sounds with triggers from the
-parallel port
+# sound_eeg A small testing utility to compare sounds with triggers from the parallel port
 
 ## Rationale
 In EEG experiments you can measure with a relatively high temporal precision.
